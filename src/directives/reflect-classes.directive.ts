@@ -4,7 +4,7 @@ import {
 import { FormControl, FormControlName } from '@angular/forms';
 
 @Directive({
-  selector: '[ngFceReflectClasses]'
+  selector: '[ng2FceReflectClasses]'
 })
 export class ReflectClassesDirective implements AfterContentInit, OnDestroy {
 
@@ -39,7 +39,7 @@ export class ReflectClassesDirective implements AfterContentInit, OnDestroy {
     }
 
     if (!this.formControl) {
-      throw new Error('ngFceReflectClasses directive needs a child FormControl');
+      throw new Error('ng2FceReflectClasses directive needs a child FormControl');
     }
 
     this.removeListener = this.renderer.listen(this.$formControl, 'blur', () => this.refreshClasses(true));

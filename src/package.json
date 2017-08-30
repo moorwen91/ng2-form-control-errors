@@ -1,10 +1,10 @@
 {
-  "name": "ng-form-control-errors",
+  "name": "ng2-form-control-errors",
   "version": "0.1.0",
   "description": "Angular's components and directives for showing errors of form-controls",
   "repository": {
     "type": "git",
-    "url": "https://github.com/moorwen91/ng-form-control-errors"
+    "url": "https://github.com/moorwen91/ng2-form-control-errors"
   },
   "author": {
     "name": "Rigoberto Moya González",
@@ -21,12 +21,12 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/moorwen91/ng-form-control-errors/issues"
+    "url": "https://github.com/moorwen91/ng2-form-control-errors/issues"
   },
-  "main": "ng-form-control-errors.umd.js",
-  "module": "ng-form-control-errors.js",
-  "jsnext:main": "ng-form-control-errors.js",
-  "typings": "ng-form-control-errors.d.ts",
+  "main": "ng2-form-control-errors.umd.js",
+  "module": "ng2-form-control-errors.js",
+  "jsnext:main": "ng2-form-control-errors.js",
+  "typings": "ng2-form-control-errors.d.ts",
   "peerDependencies": {
     "@angular/core": "^4.0.0",
     "rxjs": "^5.1.0",

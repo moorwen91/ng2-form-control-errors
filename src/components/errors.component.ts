@@ -5,7 +5,7 @@ import { FormControlError } from '../form-control-error';
 import { ErrorMessages } from '../error-messages';
 
 @Component({
-  selector: 'ng-fce-errors',
+  selector: 'ng2-fce-errors',
   template: `
     <span class="help-block" *ngFor="let error of formControlErrors">
       {{ getErrorMessage(error) }}

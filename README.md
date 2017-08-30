@@ -1,4 +1,4 @@
-# ng-form-control-errors
+# ng2-form-control-errors
 Angular's components and directives for showing errors of form-controls
 
 ## Installation
@@ -6,18 +6,18 @@ Angular's components and directives for showing errors of form-controls
 To install this library, run:
 
 ```bash
-$ npm install ng-form-control-errors --save
+$ npm install ng2-form-control-errors --save
 ```
 
 ## Integration
 
-Should work out of the box with webpack, respectively angular-cli. All you need to do is to include `NgFormControlErrorsModule`:
+Should work out of the box with webpack, respectively angular-cli. All you need to do is to include `Ng2FormControlErrorsModule`:
 
 ```ts
-import { NgFormControlErrorsModule } from 'ng-form-control-errors';
+import { Ng2FormControlErrorsModule } from 'ng2-form-control-errors';
 
 @NgModule({
-  imports: [NgFormControlErrorsModule],
+  imports: [Ng2FormControlErrorsModule],
   ...
 })
 class AppModule {}
@@ -25,4 +25,4 @@ class AppModule {}
 
 ## License
 
-MIT © [Rigoberto Moya González](mailto:rigomoya2@gmail.com)
+MIT ©

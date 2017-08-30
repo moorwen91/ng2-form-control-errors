@@ -1,12 +1,12 @@
 {
-  "name": "ng-form-control-errors",
+  "name": "ng2-form-control-errors",
   "version": "0.1.0",
   "description": "Angular's components and directives for showing errors of form-controls",
   "scripts": {
     "build": "gulp build",
     "build:watch": "gulp",
     "docs": "npm run docs:build",
-    "docs:build": "compodoc -p tsconfig.json -n ng-form-control-errors -d docs --hideGenerator",
+    "docs:build": "compodoc -p tsconfig.json -n ng2-form-control-errors -d docs --hideGenerator",
     "docs:serve": "npm run docs:build -- -s",
     "docs:watch": "npm run docs:build -- -s -w",
     "lint": "tslint --type-check --project tsconfig.json src/**/*.ts",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/moorwen91/ng-form-control-errors"
+    "url": "https://github.com/moorwen91/ng2-form-control-errors"
   },
   "author": {
     "name": "Rigoberto Moya González",
@@ -31,7 +31,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/moorwen91/ng-form-control-errors/issues"
+    "url": "https://github.com/moorwen91/ng2-form-control-errors/issues"
   },
   "devDependencies": {
     "@angular/common": "^4.0.0",

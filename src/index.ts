@@ -21,4 +21,4 @@ export * from './directives/reflect-classes.directive';
     ReflectClassesDirective
   ]
 })
-export class NgFormControlErrorsModule { }
+export class Ng2FormControlErrorsModule { }

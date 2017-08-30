@@ -1,7 +1,7 @@
 {
   "generator-angular2-library": {
     "promptValues": {
-      "gitRepositoryUrl": "https://github.com/moorwen91/ng-form-control-errors"
+      "gitRepositoryUrl": "https://github.com/moorwen91/ng2-form-control-errors"
     }
   }
 }
