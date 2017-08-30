@@ -21,8 +21,8 @@
     "annotateForClosureCompiler": true,
     "strictMetadataEmit": true,
     "skipTemplateCodegen": true,
-    "flatModuleOutFile": "ng-form-control-errors-2.js",
-    "flatModuleId": "ng-form-control-errors-2"
+    "flatModuleOutFile": "ng-form-control-errors.js",
+    "flatModuleId": "ng-form-control-errors"
   },
   "files": [
     "./index.ts"

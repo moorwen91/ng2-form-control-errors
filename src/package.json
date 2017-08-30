@@ -1,25 +1,31 @@
 {
-  "name": "ng-form-control-errors-2",
-  "version": "0.1.0",
+  "name": "ng-form-control-errors",
+  "version": "1.0.0",
+  "description": "Angular's components and directives for showing errors of form-controls",
   "repository": {
     "type": "git",
     "url": "https://github.com/moorwen91/ng-form-control-errors"
   },
   "author": {
-    "name": "Rigoberto Moya Gonzalez",
+    "name": "Rigoberto Moya González",
     "email": "rigomoya2@gmail.com"
   },
   "keywords": [
-    "angular"
+    "angular2",
+    "angular4",
+    "formcontrol",
+    "form-control",
+    "validation",
+    "error"
   ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/moorwen91/ng-form-control-errors/issues"
   },
-  "main": "ng-form-control-errors-2.umd.js",
-  "module": "ng-form-control-errors-2.js",
-  "jsnext:main": "ng-form-control-errors-2.js",
-  "typings": "ng-form-control-errors-2.d.ts",
+  "main": "ng-form-control-errors.umd.js",
+  "module": "ng-form-control-errors.js",
+  "jsnext:main": "ng-form-control-errors.js",
+  "typings": "ng-form-control-errors.d.ts",
   "peerDependencies": {
     "@angular/core": "^4.0.0",
     "rxjs": "^5.1.0",
