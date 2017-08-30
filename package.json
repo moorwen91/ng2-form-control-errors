@@ -1,6 +1,7 @@
 {
   "name": "ng-form-control-errors",
   "version": "0.1.0",
+  "description": "Angular's components and directives for showing errors of form-controls",
   "scripts": {
     "build": "gulp build",
     "build:watch": "gulp",
@@ -20,7 +21,13 @@
     "email": "rigomoya2@gmail.com"
   },
   "keywords": [
-    "angular"
+    "angular",
+    "angular2",
+    "angular4",
+    "formcontrol",
+    "form-control",
+    "validation",
+    "error"
   ],
   "license": "MIT",
   "bugs": {
