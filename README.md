@@ -40,6 +40,11 @@ In your template you may add the `ng2FceReflectClasses` directive to the input e
 ```
 This way the elements with the `ng2FceReflectClasses` directive will have (depending on the validation state of the input element) the `valid`, `invalid` and `touched` classes of the input element who contains `FormControl` directives.
 
+## Service
+By injecting `ErrorMessagesService` in your component you can customize:
+* `errorCssClass`: the css class applied to error messages shown by the `ng2-fce-errors` component. Default css class is `help-block`
+* `messages`: the default messages of validation errors.
+
 ### Component
 In your template you may add the `ng2-fce-errors` component and this will show error messages depending on validation state of the `FormControl` it points e.g.:
 ```typescript
@@ -61,9 +66,13 @@ export class AppComponent implements OnInit {
 
   myForm: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private fceMessages: MessagesService) { }
 
   ngOnInit(): void {
+    this.fceMessages.messages.required = 'Please specifiy this';
+    this.fceMessages.errorCssClass = 'help-block';
     this.myForm = this.fb.group({
       'name': ['', [Validators.required, Validators.maxLength(10)]]
     });

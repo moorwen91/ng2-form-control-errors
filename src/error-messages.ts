@@ -2,6 +2,7 @@ export interface ErrorMessages {
     required?: string;
     date?: string;
     maxDate?: string;
+    minDate?: string;
     pattern?: string;
     email?: string;
     maxlength?: string;
@@ -9,4 +10,5 @@ export interface ErrorMessages {
     url?: string;
     range?: string;
     number?: string;
+    [propName: string]: string;
 }

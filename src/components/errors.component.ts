@@ -3,11 +3,12 @@ import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { FormControlError } from '../form-control-error';
 import { ErrorMessages } from '../error-messages';
+import { ErrorMessagesService } from '../services/error-messages.service';
 
 @Component({
   selector: 'ng2-fce-errors',
   template: `
-    <span class="help-block" *ngFor="let error of formControlErrors">
+    <span [class]="msgService.errorCssClass" *ngFor="let error of formControlErrors">
       {{ getErrorMessage(error) }}
     </span>`
 })
@@ -29,7 +30,7 @@ export class ErrorsComponent implements OnInit, OnDestroy {
 
   @Input() messages: ErrorMessages;
 
-  constructor() { }
+  constructor(private msgService: ErrorMessagesService) { }
 
   ngOnInit(): void {
     this.messages = this.messages || {};
@@ -40,34 +41,7 @@ export class ErrorsComponent implements OnInit, OnDestroy {
   }
 
   getErrorMessage(error: FormControlError): string {
-    switch (error.key) {
-      case 'required':
-        return this.messages.required || 'This field is required';
-      case 'date':
-        if (this.messages.date) {
-          return this.messages.date;
-        }
-        break;
-      case 'maxDate':
-        if (this.messages.maxDate) {
-          return this.messages.maxDate;
-        }
-        break;
-      case 'pattern':
-        return this.messages.pattern || 'This field is invalid';
-      case 'email':
-        return this.messages.email || 'Email is invalid';
-      case 'maxlength':
-        return this.messages.maxlength || 'This field is too long';
-      case 'equalTo':
-        return this.messages.equalTo || 'Fields do not match';
-      case 'url':
-        return this.messages.url || 'This field should be a valid url';
-      case 'range':
-        return this.messages.range || 'This field is out of range';
-      case 'number':
-        return this.messages.number || 'This field should be a number';
-    }
+    return this.messages[error.key] || this.msgService.messages[error.key] || 'This field is invalid';
   }
 
   private getKeys(value: Object) {
