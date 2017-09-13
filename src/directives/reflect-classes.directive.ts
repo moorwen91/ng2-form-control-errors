@@ -8,10 +8,10 @@ import { FormControl, FormControlName } from '@angular/forms';
 })
 export class ReflectClassesDirective implements AfterContentInit, OnDestroy {
 
-  @Input('reflectFormControlClasses') formControlName: any = null;
+  @Input('ng2FceReflectClasses') formControlName: any = null;
   @ContentChildren(FormControlName) formControls: QueryList<FormControlName>;
   private formControl: FormControlName | FormControl;
-  private $formControl: ElementRef;
+  private htmlElement: HTMLElement;
   private removeListener: Function;
 
   constructor(private el: ElementRef, private renderer: Renderer) { }
@@ -20,29 +20,18 @@ export class ReflectClassesDirective implements AfterContentInit, OnDestroy {
     if (this.formControlName != null && this.formControlName !== '') {
       if (typeof this.formControlName === 'string') {
         this.formControl = this.formControls.find(item => item.name === this.formControlName);
-
-        this.$formControl = this.el.nativeElement.querySelector(`[formControlName="${this.formControlName}"]`);
-        if (this.$formControl === null) {
-          this.$formControl = this.el.nativeElement.querySelector('.form-control');
-        }
-      } else if (typeof this.formControlName === 'object') {
-        this.formControl = this.formControlName.formControl;
-        this.$formControl = this.el.nativeElement.querySelector(`[name="${this.formControlName.name}"]`);
+        this.htmlElement = this.el.nativeElement.querySelector(`[formControlName="${this.formControlName}"]`);
       }
     } else {
       this.formControl = this.formControls.first;
-
-      this.$formControl = this.el.nativeElement.querySelector('[formControlName]');
-      if (this.$formControl === null) {
-        this.$formControl = this.el.nativeElement.querySelector('.form-control');
-      }
+      this.htmlElement = this.el.nativeElement.querySelector('[formControlName]');
     }
 
     if (!this.formControl) {
       throw new Error('ng2FceReflectClasses directive needs a child FormControl');
     }
 
-    this.removeListener = this.renderer.listen(this.$formControl, 'blur', () => this.refreshClasses(true));
+    this.removeListener = this.renderer.listen(this.htmlElement, 'blur', () => this.refreshClasses(true));
     this.formControl.statusChanges.subscribe(status => this.refreshClasses());
     this.refreshClasses();
   }

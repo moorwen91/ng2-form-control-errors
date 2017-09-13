@@ -3,8 +3,11 @@
     <label class="col-md-2 control-label">Name</label>
 
     <div class="col-md-10">
+      <input formControlName="age" class="form-control" type="number" placeholder="Age">
       <input formControlName="name" class="form-control" type="text" placeholder="Name">
-      <ng2-fce-errors [source]="myForm.get('name')"></ng2-fce-errors>
+      <ng2-fce-errors [source]="getFormControl()" [onlyFirst]="onlyFirst"></ng2-fce-errors>
     </div>
   </div>
+  <button (click)="onlyFirst = !onlyFirst">toggle 'show only first validation message'</button>
+  <p>Only first {{ onlyFirst }}?</p>
 </form>

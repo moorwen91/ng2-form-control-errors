@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { FormControlError } from '../form-control-error';
@@ -12,32 +12,37 @@ import { ErrorMessagesService } from '../services/error-messages.service';
       {{ getErrorMessage(error) }}
     </span>`
 })
-export class ErrorsComponent implements OnInit, OnDestroy {
+export class ErrorsComponent implements OnInit, OnDestroy, OnChanges {
 
-  @Input() onlyFirst?: boolean = false;
-  private formControlSubscription: Subscription;
-
-  formControlErrors: FormControlError[];
-  @Input('source')
-  set source(formControl: FormControl) {
-    if (!this.formControlSubscription) {
-      this.formControlSubscription = formControl.statusChanges.subscribe(() => {
-        this.processErrors(formControl);
-      });
-      this.processErrors(formControl);
-    }
-  }
-
+  @Input() source: FormControl;
   @Input() messages: ErrorMessages;
+  @Input() onlyFirst?: boolean;
+
+  formControlSubscription: Subscription;
+  formControlErrors: FormControlError[];
 
   constructor(private msgService: ErrorMessagesService) { }
 
   ngOnInit(): void {
+    this.onlyFirst = false;
     this.messages = this.messages || {};
+    this.registerAndProcessFormControl(this.source);
   }
 
   ngOnDestroy(): void {
-    this.formControlSubscription.unsubscribe();
+    if (this.formControlSubscription) {
+      this.formControlSubscription.unsubscribe();
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.onlyFirst && !changes.onlyFirst.isFirstChange()) {
+      this.processErrors();
+    }
+    if (changes.source && !changes.source.isFirstChange()) {
+      this.formControlSubscription.unsubscribe();
+      this.registerAndProcessFormControl(changes.source.currentValue);
+    }
   }
 
   getErrorMessage(error: FormControlError): string {
@@ -52,11 +57,18 @@ export class ErrorsComponent implements OnInit, OnDestroy {
     return keys;
   }
 
-  private processErrors(formControl: FormControl) {
-    this.formControlErrors = this.getKeys(formControl.errors);
+  private processErrors() {
+    this.formControlErrors = this.getKeys(this.source.errors);
     if (this.onlyFirst && this.formControlErrors.length > 0) {
       this.formControlErrors = [this.formControlErrors[0]];
     }
+  }
+
+  private registerAndProcessFormControl(formControl: FormControl): void {
+    this.formControlSubscription = formControl.statusChanges.subscribe(() => {
+      this.processErrors();
+    });
+    this.processErrors();
   }
 
 }

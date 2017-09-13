@@ -1,5 +1,5 @@
 # ng2-form-control-errors
-Angular's components and directives for showing errors of form-controls
+Angular's components and directives for showing errors of form-controls. Use it alongside ReactiveForms.
 
 ## Installation
 
@@ -39,6 +39,24 @@ In your template you may add the `ng2FceReflectClasses` directive to the input e
   </div>
 ```
 This way the elements with the `ng2FceReflectClasses` directive will have (depending on the validation state of the input element) the `valid`, `invalid` and `touched` classes of the input element who contains `FormControl` directives.
+
+If you have several `formControl` children inside the element with this directive, you can specify the name of the `formControl` you want to reflect his clasess as the value of the directive e.g.:
+```html
+<div ng2FceReflectClasses="age" class="form-group">
+  <div class="row">
+    <label class="col-md-2 control-label">Name</label>
+      <div class="col-md-10">
+        <input formControlName="name" class="form-control" type="text" placeholder="Name">
+      </div>
+  </div>
+  <div class="row">
+    <label class="col-md-2 control-label">Age</label>
+    <div class="col-md-10">
+      <input id="age" formControlName="age" class="form-control" type="number" placeholder="Age">
+    </div>
+  </div>
+</div>
+```
 
 ## Service
 By injecting `ErrorMessagesService` in your component you can customize:
@@ -83,7 +101,7 @@ export class AppComponent implements OnInit {
 The `ng2-fce-errors` component has three properties:
 * `source`: holds the `FormControl` object to validate.
 * `onlyFirst`: optional boolean value to only show the first validation error message.
-* `messages`: an optional object with `ErrorMessages` interface who holds validation as key and a string as the message for that validation error.
+* `messages`: an optional object with `ErrorMessages` interface who holds validation as key and a string as the message for that validation error. The supplied messages here will be used instead of messages in `MessagesService`.
 
 ## Example app
 The demo subfolder contains a project created with angular-cli that has been adapted to showcase the functionality of ng2-form-control-errors. Run the demo app by executing the following command in the project root directory:
@@ -99,9 +117,6 @@ npm install
 // Run the server
 ng serve
 ```
-
-## Todo
-* Implement tests
 
 ## License
 
