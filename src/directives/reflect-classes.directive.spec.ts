@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { By } from '@angular/platform-browser';
 
 import { ReflectClassesDirective } from './reflect-classes.directive';
+import {FormControlErrorsConfigService} from '../services/form-control-errors-config.service';
 
 describe('ReflectClassesDirective', () => {
   beforeEach(() => {
@@ -15,6 +16,7 @@ describe('ReflectClassesDirective', () => {
         BasicDemoComponent,
         AdvancedDemoComponent
       ],
+      providers: [ FormControlErrorsConfigService ]
     })
     .compileComponents();
   });

@@ -3,14 +3,14 @@ import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { FormControlError } from '../form-control-error';
 import { ErrorMessages } from '../error-messages';
-import { ErrorMessagesService } from '../services/error-messages.service';
+import { FormControlErrorsConfigService } from '../services/form-control-errors-config.service';
 
 @Component({
   selector: 'ng2-fce-errors',
   template: `
-    <span [class]="msgService.errorCssClass" *ngFor="let error of formControlErrors">
+    <div [class]="fceConfig.errorCssClass" *ngFor="let error of formControlErrors">
       {{ getErrorMessage(error) }}
-    </span>`
+    </div>`
 })
 export class ErrorsComponent implements OnInit, OnDestroy, OnChanges {
 
@@ -21,7 +21,7 @@ export class ErrorsComponent implements OnInit, OnDestroy, OnChanges {
   formControlSubscription: Subscription;
   formControlErrors: FormControlError[];
 
-  constructor(private msgService: ErrorMessagesService) { }
+  constructor(private fceConfig: FormControlErrorsConfigService) { }
 
   ngOnInit(): void {
     this.onlyFirst = false;
@@ -46,7 +46,7 @@ export class ErrorsComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   getErrorMessage(error: FormControlError): string {
-    return this.messages[error.key] || this.msgService.messages[error.key] || 'This field is invalid';
+    return this.messages[error.key] || this.fceConfig.messages[error.key] || 'This field is invalid';
   }
 
   private getKeys(value: Object) {

@@ -10,7 +10,8 @@ module.exports = function (config) {
 
     exclude: [
       'demo',
-      'dist'
+      'dist',
+      'src/index.ts'
     ],
 
     plugins: [
@@ -37,7 +38,7 @@ module.exports = function (config) {
     },
 
     browsers: [
-      'Chrome',
+      'Chrome'
     ],
 
     reporters: [

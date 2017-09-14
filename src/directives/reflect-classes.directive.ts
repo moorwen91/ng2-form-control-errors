@@ -2,6 +2,7 @@ import {
   AfterContentInit, ContentChildren, Directive, ElementRef, Input, OnDestroy, QueryList, Renderer
 } from '@angular/core';
 import { FormControl, FormControlName } from '@angular/forms';
+import { FormControlErrorsConfigService } from '../services/form-control-errors-config.service';
 
 @Directive({
   selector: '[ng2FceReflectClasses]'
@@ -14,7 +15,11 @@ export class ReflectClassesDirective implements AfterContentInit, OnDestroy {
   private htmlElement: HTMLElement;
   private removeListener: Function;
 
-  constructor(private el: ElementRef, private renderer: Renderer) { }
+  constructor(
+    private el: ElementRef,
+    private renderer: Renderer,
+    private fceConfig: FormControlErrorsConfigService
+  ) { }
 
   ngAfterContentInit(): void {
     if (this.formControlName != null && this.formControlName !== '') {
@@ -37,13 +42,32 @@ export class ReflectClassesDirective implements AfterContentInit, OnDestroy {
   }
 
   refreshClasses(setTouched: boolean = false) {
-    this.renderer.setElementClass(this.el.nativeElement, 'valid', this.formControl.valid);
-    this.renderer.setElementClass(this.el.nativeElement, 'invalid', this.formControl.invalid);
-    this.renderer.setElementClass(this.el.nativeElement, 'touched', this.formControl.touched);
+    this.toggleCssClass('valid', this.formControl.valid);
+    this.toggleCssClass('invalid', this.formControl.invalid);
+    this.toggleCssClass('touched', this.formControl.touched);
 
     if (setTouched) {
-      this.renderer.setElementClass(this.el.nativeElement, 'touched', true);
+      this.toggleCssClass('touched', true);
     }
+  }
+
+  private toggleCssClass(cssClass: string, isAdd: boolean): void {
+    let c = cssClass;
+    switch (cssClass) {
+      case 'valid': {
+        c = this.el.nativeElement.getAttribute('ng2FceValidClass') || this.fceConfig.validCssClass;
+        break;
+      }
+      case 'invalid': {
+        c = this.el.nativeElement.getAttribute('ng2FceInvalidClass') || this.fceConfig.invalidCssClass;
+        break;
+      }
+      case 'touched': {
+        c = this.el.nativeElement.getAttribute('ng2FceTouchedClass') || this.fceConfig.touchedCssClass;
+        break;
+      }
+    }
+    this.renderer.setElementClass(this.el.nativeElement, c, isAdd);
   }
 
   ngOnDestroy(): void {

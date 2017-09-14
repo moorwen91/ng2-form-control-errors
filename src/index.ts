@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ErrorsComponent } from './components/errors.component';
 import { ReflectClassesDirective } from './directives/reflect-classes.directive';
-import { ErrorMessagesService } from './services/error-messages.service';
+import { FormControlErrorsConfigService } from './services/form-control-errors-config.service';
 
 export * from './components/errors.component';
 export * from './directives/reflect-classes.directive';
-export * from './services/error-messages.service';
+export * from './services/form-control-errors-config.service';
 
 @NgModule({
   imports: [
@@ -19,7 +19,7 @@ export * from './services/error-messages.service';
     ReflectClassesDirective
   ],
   providers: [
-    ErrorMessagesService
+    FormControlErrorsConfigService
   ],
   exports: [
     ErrorsComponent,

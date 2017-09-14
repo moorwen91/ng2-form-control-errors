@@ -38,7 +38,17 @@ In your template you may add the `ng2FceReflectClasses` directive to the input e
     </div>
   </div>
 ```
-This way the elements with the `ng2FceReflectClasses` directive will have (depending on the validation state of the input element) the `valid`, `invalid` and `touched` classes of the input element who contains `FormControl` directives.
+This way the elements with the `ng2FceReflectClasses` directive will have by default (depending on the validation state of the input element) the `valid`, `invalid` and `touched` classes of the input element who contains `FormControl` directives. You can customize these classes in two ways:
+ * By setting the `validCssClass`, `invalidCssClass` and `touchedCssClass` properties of the `FormControlErrorsConfigService`. This values will be used globally.
+ * By adding the attributes `ng2FceValidClass`, `ng2FceInvalidClass` and `ng2FceTouchedClass` and setting their values to corresponding classes. If present, the values of these attributes will be used instead of the properties of the `FormControlErrorsConfigService`.
+ ```html
+   <div ng2FceReflectClasses class="form-group"
+    ng2FceValidClass="formControlOK"
+    ng2FceInvalidClass="formControlWithError"
+    ng2FceTouchedClass="formControlWasTouched">
+     ...
+   </div>
+ ```
 
 If you have several `formControl` children inside the element with this directive, you can specify the name of the `formControl` you want to reflect his clasess as the value of the directive e.g.:
 ```html
@@ -59,9 +69,10 @@ If you have several `formControl` children inside the element with this directiv
 ```
 
 ## Service
-By injecting `ErrorMessagesService` in your component you can customize:
+By injecting `FormControlErrorsConfigService` in your component you can customize:
 * `errorCssClass`: the css class applied to error messages shown by the `ng2-fce-errors` component. Default css class is `help-block`
 * `messages`: the default messages of validation errors.
+* `validCssClass`, `invalidCssClass` and `touchedCssClass`: default CSS classes for the host element of `ng2FceReflectClasses` directive.
 
 ### Component
 In your template you may add the `ng2-fce-errors` component and this will show error messages depending on validation state of the `FormControl` it points e.g.:

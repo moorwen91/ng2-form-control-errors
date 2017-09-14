@@ -5,7 +5,7 @@ import {
 } from '@angular/forms';
 
 import { ErrorsComponent } from './errors.component';
-import { ErrorMessagesService } from '../services/error-messages.service';
+import { FormControlErrorsConfigService } from '../services/form-control-errors-config.service';
 import {Component, DebugElement, OnInit} from '@angular/core';
 import {By} from '@angular/platform-browser';
 
@@ -18,7 +18,7 @@ describe('ErrorsComponent', () => {
     TestBed.configureTestingModule({
       imports: [ ReactiveFormsModule ],
       declarations: [ BasicDemoComponent, ErrorsComponent ],
-      providers: [ ErrorMessagesService ],
+      providers: [ FormControlErrorsConfigService ],
     })
     .compileComponents();
   }));

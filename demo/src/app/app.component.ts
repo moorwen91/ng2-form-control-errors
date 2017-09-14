@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from '@angular/forms';
-import {ErrorMessagesService} from './ng2-form-control-errors/services/error-messages.service';
+import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { FormControlErrorsConfigService } from 'ng2-form-control-errors';
 
 @Component({
   selector: 'app-root',
@@ -14,12 +14,15 @@ export class AppComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private fceMessages: ErrorMessagesService) { }
+    private fceConfig: FormControlErrorsConfigService
+  ) { }
 
   ngOnInit(): void {
-    this.onlyFirst = false;
-    this.fceMessages.messages.required = 'Please specifiy this';
-    this.fceMessages.errorCssClass = 'help-block';
+    this.fceConfig.messages.required = 'Please specifiy this';
+    this.fceConfig.errorCssClass = 'form-control-feedback';
+    this.fceConfig.validCssClass = 'has-success';
+    this.fceConfig.invalidCssClass = 'has-danger';
+
     this.myForm = this.fb.group({
       'name': ['asdasdasdasda99999', [
         Validators.required,
@@ -31,15 +34,9 @@ export class AppComponent implements OnInit {
           }
         }
       ]],
-      'age': ['', [Validators.required]]
+      'age': ['', [Validators.required]],
+      'onlyFirst': [false]
     });
-  }
-
-  getFormControl(): AbstractControl {
-    if (!this.onlyFirst) {
-      return this.myForm.get('name');
-    }
-    return this.myForm.get('age');
   }
 
 }

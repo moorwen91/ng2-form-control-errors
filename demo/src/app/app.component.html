@@ -1,13 +1,30 @@
-<form [formGroup]="myForm" class="form-horizontal" novalidate>
-  <div ng2FceReflectClasses class="form-group">
-    <label class="col-md-2 control-label">Name</label>
+<div class="container">
+  <div class="col-lg-8 offset-lg-2">
+    <h1 class="text-center">ng2FormControlErrors</h1>
 
-    <div class="col-md-10">
-      <input formControlName="age" class="form-control" type="number" placeholder="Age">
-      <input formControlName="name" class="form-control" type="text" placeholder="Name">
-      <ng2-fce-errors [source]="getFormControl()" [onlyFirst]="onlyFirst"></ng2-fce-errors>
-    </div>
+    <form [formGroup]="myForm" novalidate class="mt-5">
+      <div ng2FceReflectClasses class="form-group row">
+        <label class="col-sm-2 col-form-label">Name</label>
+        <div class="col-sm-10">
+          <input formControlName="name" class="form-control" type="text" placeholder="Name">
+          <ng2-fce-errors [source]="myForm.get('name')" [onlyFirst]="myForm.get('onlyFirst').value"></ng2-fce-errors>
+        </div>
+      </div>
+
+      <div ng2FceReflectClasses class="form-group row">
+        <label class="col-sm-2 col-form-label">Age</label>
+        <div class="col-sm-10">
+          <input formControlName="age" class="form-control" type="number" placeholder="Age">
+          <ng2-fce-errors [source]="myForm.get('age')" [onlyFirst]="myForm.get('onlyFirst').value"></ng2-fce-errors>
+        </div>
+      </div>
+
+      <div class="form-check">
+        <label class="form-check-label">
+          <input formControlName="onlyFirst" type="checkbox" class="form-check-input">
+          Show only first validation message
+        </label>
+      </div>
+    </form>
   </div>
-  <button (click)="onlyFirst = !onlyFirst">toggle 'show only first validation message'</button>
-  <p>Only first {{ onlyFirst }}?</p>
-</form>
+</div>
