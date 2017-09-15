@@ -1,5 +1,5 @@
 module.exports = function (config) {
-  config.set({
+  let c = {
 
     frameworks: [ 'jasmine', 'karma-typescript' ],
 
@@ -17,7 +17,7 @@ module.exports = function (config) {
     plugins: [
       'karma-jasmine',
       'karma-typescript',
-      'karma-chrome-launcher'
+      'karma-phantomjs-launcher'
     ],
 
     preprocessors: {
@@ -37,18 +37,22 @@ module.exports = function (config) {
       tsconfig: './tsconfig.test.json'
     },
 
-    browsers: [
-      'Chrome'
-    ],
+    browsers: [ 'PhantomJS' ],
 
-    reporters: [
-      'progress',
-      'karma-typescript'
-    ],
+    reporters: [ 'progress', 'karma-typescript' ],
+
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: false,
     singleRun: true
-  });
+  };
+
+  if (config.coveralls === 'true') {
+    c.logLevel = config.LOG_DISABLE;
+    c.reporters.splice(0, 1);
+    c.karmaTypescriptConfig.reports = { 'text-lcov': '' };
+  }
+
+  config.set(c);
 };
