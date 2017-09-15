@@ -1,5 +1,6 @@
 # ng2-form-control-errors
 [![Coverage Status](https://coveralls.io/repos/github/moorwen91/ng2-form-control-errors/badge.svg?branch=master)](https://coveralls.io/github/moorwen91/ng2-form-control-errors?branch=master)
+[![Build Status](https://travis-ci.org/moorwen91/ng2-form-control-errors.svg?branch=master)](https://travis-ci.org/moorwen91/ng2-form-control-errors)
 
 Angular's components and directives for showing errors of form-controls. Use it alongside ReactiveForms.
 
